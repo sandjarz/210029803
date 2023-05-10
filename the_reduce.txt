@@ -1,0 +1,43 @@
+from typing import List
+
+def reduce(func, lst: List):
+    """
+    Combines the elements of a list using a given operator and returns a single result.
+    """
+    if len(lst) == 0:
+        raise TypeError("reduce() of empty sequence with no initial value")
+
+    result = lst[0]
+    for elem in lst[1:]:
+        result = func(result, elem)
+    return result
+
+def test_reduce():
+    # Test case 1 - reducing a list of integers using addition
+    assert reduce(lambda x, y: x + y, [1, 2, 3]) == 6
+
+    # Test case 2 - reducing a list of strings using concatenation
+    assert reduce(lambda x, y: x + y, ["hello", "world", "!"]) == "helloworld!"
+
+    # Test case 3 - reducing a list of integers using multiplication
+    assert reduce(lambda x, y: x * y, [1, 2, 3]) == 6
+
+    # Test case 4 - reducing a list of integers using a custom function
+    def custom_function(x, y):
+        if y % 2 == 0:
+            return x + y
+        else:
+            return x
+
+    assert reduce(custom_function, [1, 2, 3, 4, 5, 6]) == 12
+
+    # Test case 5 - reducing an empty list
+    try:
+        reduce(lambda x, y: x + y, [])
+    except TypeError as e:
+        assert str(e) == "reduce() of empty sequence with no initial value"
+    else:
+        assert False, "Expected TypeError"
+
+###The reduce function combines the elements of a list using a given operator and returns a single result. 
+###It raises a TypeError if the list is empty. The test_reduce function has five test cases, which include reducing lists of integers and strings using addition, multiplication, and custom functions, as well as testing for an empty list.
