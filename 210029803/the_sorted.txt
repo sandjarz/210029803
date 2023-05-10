@@ -1,0 +1,39 @@
+from typing import List, Callable
+
+def sorted_list(lst: List, key: Callable = None, reverse: bool = False) -> List:
+    """
+    Sorts a given list and returns a new sorted list.
+    :param lst: List to be sorted.
+    :param key: Optional key function to specify a custom order.
+    :param reverse: Optional boolean flag to sort the list in reverse order.
+    :return: New sorted list.
+    """
+    return sorted(lst, key=key, reverse=reverse)
+
+
+def test_sorted_list():
+    # Test case 1 - sorting a list of integers
+    assert sorted_list([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5], reverse=True) == [9, 6, 5, 5, 5, 4, 3, 3, 2, 1, 1]
+
+    # Test case 2 - sorting a list of strings
+    assert sorted_list(["apple", "banana", "cherry", "date"], key=lambda x: len(x)) == ["date", "apple", "cherry", "banana"]
+
+    # Test case 3 - sorting an empty list
+    assert sorted_list([], key=lambda x: x, reverse=True) == []
+
+    # Test case 4 - sorting a large list
+    assert sorted_list(list(range(100000)), reverse=True) == list(range(99999, -1, -1))
+
+    # Test case 5 - sorting a list with a function that raises an exception
+    def divide_by_zero(x):
+        return x / 0
+
+    try:
+        sorted_list([1, 2, 3], key=divide_by_zero)
+    except ZeroDivisionError:
+        pass
+    else:
+        assert False, "Expected ZeroDivisionError"
+
+
+test_sorted_list()
