@@ -1,0 +1,36 @@
+def the_map(func, lst):
+    
+    """Applies a given function to each element of a list and returns a new list containing the results."""
+    
+    result = []
+    for elem in lst:
+        result.append(func(elem))
+    return result
+
+def test_the_map():
+    # Test case 1 - mapping a function to a list of integers
+    assert the_map(lambda x: x * 2, [1, 2, 3]) == [2, 4, 6]
+
+    # Test case 2 - mapping a function to a list of strings
+    assert the_map(lambda x: x.upper(), ["apple", "banana", "cherry"]) == ["APPLE", "BANANA", "CHERRY"]
+
+    # Test case 3 - mapping a function to an empty list
+    assert the_map(lambda x: x + 1, []) == []
+
+    # Test case 4 - mapping a function to a large list
+    assert the_map(lambda x: x * 2, list(range(100000))) == [x * 2 for x in range(100000)]
+
+    # Test case 5 - mapping a function that raises an exception
+    def divide_by_zero(x):
+        return x / 0
+
+    try:
+        the_map(divide_by_zero, [1, 2, 3])
+    except ZeroDivisionError:
+        pass
+    else:
+        assert False, "Expected ZeroDivisionError"
+
+###The the_map function takes a function and a list, applies the function to each element of the list, and returns a new list containing the results. The test_the_map function includes five test cases to ensure that the the_map function works correctly in different scenarios.
+ ###The first four test cases involve mapping a function to different types of input lists, including empty lists and large lists,
+ ###while the fifth test case involves mapping a function that raises an exception. The test cases use the assert statement to check that the output of the the_map function matches the expected output.
