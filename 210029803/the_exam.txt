@@ -1,0 +1,153 @@
+2. --------------------------------------------------------------------------------------
+import datetime
+
+def compute_days_to_today(year, month, day):
+    try:
+        given_date = datetime.date(year, month, day)
+    except ValueError:
+        raise Exception("invalid date")
+
+    today = datetime.date.today()
+
+    if given_date >= today:
+        return (given_date - today).days
+    else:
+        return -(today - given_date).days
+
+# test example
+year = int(input("YEAR: "))
+month = int(input("MONTH: "))
+day = int(input("DAY: "))
+
+days_to_today = compute_days_to_today(year, month, day)
+print("DAYS LEADING UP TO THIS DAY:", days_to_today)
+
+3.  --------------------------------------------------------------------------------------
+It is an optimizing technique used in computer programming to optimize execution timing and making applications faster and efficient.
+
+fib_cache = {}
+
+def fibonacci(n):
+    if n in fib_cache:
+        return fib_cache[n]
+
+   
+
+ if n <= 1:
+        fib_result = n
+    else:
+        fib_result = fibonacci(n - 1) + fibonacci(n - 2)
+
+
+
+    fib_cache[n] = fib_result
+
+    return fib_result
+
+
+
+
+print(fibonacci(6))
+print(fibonacci(10))
+
+
+4.  --------------------------------------------------------------------------------------
+Proccess where compiler converts one data type to another, so thats what its normally used for. For handling conversions.
+
+x = True
+y = int(x)#-- Casting boolean to integer
+z = str(x) #-- Casting boolean to string
+print(y)  #-- Output: 1
+print(z) #-- Output: "True"
+
+5.  --------------------------------------------------------------------------------------
+When more than one problem or algorithm happens in program at the same time without affecting the outcome. Out of order or may be in partial-order
+
+
+
+6.  --------------------------------------------------------------------------------------
+another fundamental concept in oop. Bundles data and methods operating on data in a unit called "class". Some example aspects of it are data-hiding, access modifiers, setters getters and more.
+
+
+
+7.  --------------------------------------------------------------------------------------
+class Rectangle:
+    def __init__(self, length, width):
+        self._length = length
+        self._width = width
+
+    def get_length(self):
+        return self._length
+
+    def set_length(self, length):
+        self._length = length
+
+    def get_width(self):
+        return self._width
+
+    def set_width(self, width):
+        self._width = width
+
+    def calculate_area(self):
+        return self._length * self._width
+
+
+# instance of an Rectangle
+rectangle = Rectangle(5, 3)
+
+# Accessing attributes using getter methods
+print("Length:", rectangle.get_length()) 
+ #Output 5
+print("Width:", rectangle.get_width())    
+# Output 3
+
+# setters to update Attributes
+rectangle.set_length(7)
+rectangle.set_width(4)
+
+# Calculate Area
+area = rectangle.calculate_area()
+print("Area:", area)  
+# Output 28
+
+
+make the length and width attributes non public by adding an underscore before each, marking it 'protected'. for controlled access, getters and setters are put in place as get_[length/width] and set_[length/width] to allow updates on their attribute values
+
+
+8. --------------------------------------------------------------------------------------
+
+A process of basing an object or class upon another object or class (while maintaining similar implementation)
+
+People, being considered a parent class, has multiple child classes(Father, Mother, Grandmother, Grandfather, Uncle, etc etc) and each of these sub classes has their own (Son or daughter). People (Parent Class) > Mother (Child Class) > Son/Daughter *would be considered like grandchild class of this hierarchy*
+
+
+
+
+9. --------------------------------------------------------------------------------------
+Where the instances are described occurring in various ways, and can only be allowed a method to be used with objects of various types (long as they're related through inheritance)
+
+
+# To animal superclass
+class Animal
+
+#I will add sound
+
+  def sound(self)
+         pass
+
+#referencing self to the instance of its class, i will repeat this process on each animal i add on to the script
+
+class Cat(Animal)
+  def sound(self)
+     return "Purr"
+
+#and so on and so on, now after the instances are created for each animals, i can call their sound. Animal is where these animal classes are inherited from, so we can actually work w different animals without handling each animals specific behaviour
+
+
+
+10.  --------------------------------------------------------------------------------------
+
+
+hiding process of how object works and instead shows what it is doing. Internal details hidden. So only the essential info is exposed to outside world.
+
+For example, if you're abstracting concept of a vehicle class, you get general understanding of what vehicle is and what it does. abstraction lets you talk about vehicles without getting into specifics of each vehicles.
